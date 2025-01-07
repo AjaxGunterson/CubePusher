@@ -26,9 +26,9 @@ int main(int argc, char **argv)
 	// 	"KEY_CSTICK_RIGHT", "KEY_CSTICK_LEFT", "KEY_CSTICK_UP", "KEY_CSTICK_DOWN",
 	// 	"KEY_CPAD_RIGHT", "KEY_CPAD_LEFT", "KEY_CPAD_UP", "KEY_CPAD_DOWN"
 	// };
-    const int MAX_POWER = 200000;
-    const int MIN_POWER = 50000;
-    const int EXPLODE_POWER_DEFAULT = 10000;
+    const int MAX_POWER = 1000000;
+    const int MIN_POWER = 100000;
+    const int EXPLODE_POWER_DEFAULT = 200000;
 
     gfxInitDefault();
     C3D_Init(C3D_DEFAULT_CMDBUF_SIZE);
@@ -143,7 +143,7 @@ int main(int argc, char **argv)
 
         if (kDown & KEY_DUP)
         {
-            if (body->GetLinearVelocity().y <= 2)
+            if (abs(body->GetLinearVelocity().y) <= 0.1)
             {
                 body->ApplyLinearImpulse(b2Vec2(0, -MAX_POWER), body->GetWorldCenter(), true);
             }
